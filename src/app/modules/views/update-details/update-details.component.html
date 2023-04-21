@@ -6,25 +6,25 @@
 <div class="global-container">
   <mat-form-field class="example-full-width">
     <mat-label>Nombre</mat-label>
-    <input matInput placeholder="Ej. Benito Antonio" #nameInput>
+    <input matInput placeholder="Ej. Benito Antonio" [value]="name" #nameInput>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>Edad</mat-label>
-    <input matInput placeholder="Ej. 23" #ageInput>
+    <input matInput placeholder="Ej. 23" [value]="age" #ageInput>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="example-form">
     <mat-label>Fecha de nacimiento</mat-label>
-    <input matInput [matDatepicker]="picker" #birthdateInput>
+    <input matInput [matDatepicker]="picker" #birthdateInput [value]="birthdate" readonly>
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <mat-label>Mensaje</mat-label>
-    <textarea matInput placeholder="Ej. Hello, wordl." #messageInput></textarea>
+    <mat-label>Intereses</mat-label>
+    <textarea matInput placeholder="Ej. Hello, wordl." [value]="interests" #messageInput></textarea>
   </mat-form-field>
 
   <div class="controls-section">

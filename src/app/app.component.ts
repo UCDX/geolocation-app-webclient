@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
 
   endSession() {
     // this.session.end_session();
+    localStorage.removeItem('user_id')
     this.router.navigate(['/']);
   }
 
@@ -57,7 +58,7 @@ export class AppComponent implements OnInit {
 
   isThereSession() {
     // return this.session.get_userdata() != null;
-    return true
+    return localStorage.getItem('user_id') != null
   }
 
   isThereUserImage() {

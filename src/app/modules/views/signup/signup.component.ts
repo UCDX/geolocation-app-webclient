@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { BackendService } from 'src/app/services/backend.service'; 
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +14,7 @@ export class SignupComponent {
     private backend: BackendService
   ) { }
 
-  signup(userName: string, passwd: string, passwdConfirm: string) {
+  async signup(userName: string, passwd: string, passwdConfirm: string) {
     // logic to execute the login.
     console.log(`user: ${userName} passwd: ${passwd} confirm-passwd: ${passwdConfirm}`)
     if (passwd != passwdConfirm) {
@@ -22,7 +22,15 @@ export class SignupComponent {
       return
     }
 
-    // this.backend
+    const data = {
+      username: userName,
+      password: passwd
+    }
+    const response = await this.backend.signup(data)
+    console.log(`response: ${response}`)
+    localStorage.setItem('user_id', response.data.id)
+
+    this.goToPage('/nearby-users')
   }
 
   goToPage(path: string) {
