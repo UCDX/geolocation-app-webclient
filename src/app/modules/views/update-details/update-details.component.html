@@ -1,0 +1,36 @@
+<p>
+  <mat-toolbar color="primary" class="toolbar" id="toolbar">
+    <span>Actualizar información</span>
+  </mat-toolbar>
+</p>
+<div class="global-container">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="Ej. Benito Antonio" #nameInput>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Edad</mat-label>
+    <input matInput placeholder="Ej. 23" #ageInput>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="example-form">
+    <mat-label>Fecha de nacimiento</mat-label>
+    <input matInput [matDatepicker]="picker" #birthdateInput>
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Mensaje</mat-label>
+    <textarea matInput placeholder="Ej. Hello, wordl." #messageInput></textarea>
+  </mat-form-field>
+
+  <div class="controls-section">
+    <button mat-raised-button color="primary" class="update-btn"
+      (click)="updateDetails(nameInput.value, ageInput.value, birthdateInput.value, messageInput.value)">
+      <span>Actualizar</span>
+    </button>
+  </div>
+</div>
