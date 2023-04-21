@@ -14,11 +14,17 @@ export class LoginComponent {
     private backend: BackendService
   ) { }
 
-  login(userName: string, passwd: string) {
+  async login(userName: string, passwd: string) {
     // logic to execute the login.
-    console.log(`user: ${userName} passwd: ${passwd}`)
+    const data = {
+      username: userName,
+      password: passwd
+    }
+    const response = await this.backend.login(data)
+    console.log(`response: ${response}`)
+    localStorage.setItem('user_id', response.data.id)
 
-    //this.backend
+    this.goToPage('/nearby-users')
   }
 
   goToPage(path: string) {

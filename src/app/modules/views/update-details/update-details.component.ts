@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
@@ -8,13 +9,54 @@ import { BackendService } from 'src/app/services/backend.service';
 })
 export class UpdateDetailsComponent {
 
+  name: string = ''
+  age: number = 0
+  birthdate: Date = new Date()
+  interests: string = ''
+
   constructor(
+    private router: Router,
     private backend: BackendService
   ) { }
 
-  updateDetails(name: string, age: string, birthdate: string, message: string) {
-    console.log(name, age, birthdate, message)
+  async ngOnInit(): Promise<void> {
 
-    // this.backend
+    const userId = localStorage.getItem('user_id')
+    if (userId == null) {
+      this.goToPage('/login')
+      return
+    }
+    const response = await this.backend.getUserInfo(parseInt(userId))
+    const user = response.data
+    console.log(`response.data: ${JSON.stringify(response.data)}`)
+    this.name = user.name
+    this.age = user.age
+    this.birthdate = new Date( user.birthdate )
+    this.interests = user.interests
+  }
+
+  updateDetails(name: string, age: string, birthdate: string, interests: string) {
+    console.log(name, age, birthdate, interests)
+
+    if (name == '' || age == '' || birthdate == '' || interests == '') {
+      alert('Todos los campos son obligatorios')
+      return
+    }
+
+    const userId = localStorage.getItem('user_id')
+    if (userId == null) return
+    const data = {
+      'name': name,
+      'age': age,
+      'birthdate': birthdate,
+      'interests': interests
+    }
+    console.log(data)
+    const response = this.backend.updateUserInfo(parseInt(userId), data)
+    console.log(`response: ${response}`)
+  }
+
+  goToPage(path: string) {
+    this.router.navigateByUrl(path);
   }
 }
