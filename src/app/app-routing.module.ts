@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'nearby-users', children: [
     { path: '', component: NearbyUsersComponent },
-    { path: ':user-name', children: [
+    { path: ':user', children: [
       { path: 'details', component: NearbyUserDetailsComponent }
     ] }
   ] },

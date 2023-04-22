@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from 'src/app/services/backend.service';
 
@@ -7,7 +7,7 @@ import { BackendService } from 'src/app/services/backend.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
@@ -27,8 +27,20 @@ export class LoginComponent {
     this.goToPage('/nearby-users')
   }
 
+  ngOnInit(): void {
+    if(this.isThereSession()) {
+      this.goToPage('/nearby-users')
+      return
+    }
+  }
+
   goToPage(path: string) {
     this.router.navigateByUrl(path);
+  }
+
+  isThereSession() {
+    // return this.session.get_userdata() != null;
+    return localStorage.getItem('user_id') != null
   }
 
 }

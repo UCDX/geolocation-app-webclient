@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   endSession() {
     // this.session.end_session();
     localStorage.removeItem('user_id')
+    localStorage.removeItem('nearby-users')
     this.router.navigate(['/']);
   }
 

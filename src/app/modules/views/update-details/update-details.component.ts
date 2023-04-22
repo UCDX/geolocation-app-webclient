@@ -20,6 +20,10 @@ export class UpdateDetailsComponent {
   ) { }
 
   async ngOnInit(): Promise<void> {
+    if(!this.isThereSession()) {
+      this.goToPage('/login')
+      return
+    }
 
     const userId = localStorage.getItem('user_id')
     if (userId == null) {
@@ -58,5 +62,10 @@ export class UpdateDetailsComponent {
 
   goToPage(path: string) {
     this.router.navigateByUrl(path);
+  }
+
+  isThereSession() {
+    // return this.session.get_userdata() != null;
+    return localStorage.getItem('user_id') != null
   }
 }
