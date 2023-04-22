@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from 'src/app/services/backend.service';
 
@@ -7,7 +7,7 @@ import { BackendService } from 'src/app/services/backend.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
 
   constructor(
     private router: Router,
@@ -33,7 +33,19 @@ export class SignupComponent {
     this.goToPage('/nearby-users')
   }
 
+  ngOnInit(): void {
+    if(this.isThereSession()) {
+      this.goToPage('/nearby-users')
+      return
+    }
+  }
+
   goToPage(path: string) {
     this.router.navigateByUrl(path);
+  }
+
+  isThereSession() {
+    // return this.session.get_userdata() != null;
+    return localStorage.getItem('user_id') != null
   }
 }

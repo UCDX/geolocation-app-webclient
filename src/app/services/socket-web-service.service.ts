@@ -11,13 +11,10 @@ export class SocketWebServiceService extends Socket {
       'url': 'http://localhost:5000'
     })
     console.log('Socket instanciated')
-    this.listen()
   }
 
-  private listen() {
-    this.ioSocket.on('nearby-users', (data: any) => {
-      console.log(data)
-    })
+  onNearbyUsers(handler: any) {
+    this.ioSocket.on('nearby-users', handler)
   }
 
   emitLocation(payload = {}) {
