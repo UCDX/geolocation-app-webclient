@@ -7,7 +7,9 @@
   <mat-card class="user-card">
     <mat-card-content>Mis coordenadas: lat={{lat}} lon={{lon}}</mat-card-content>
   </mat-card>
-  <mat-card class="user-card clickable" *ngFor="let u of nearbyUsers" (click)="seeUserDetails(u.username)">
-    <mat-card-content>{{u.name}}</mat-card-content>
-  </mat-card>
+  <div *ngIf="nearbyUsers.length > 0">
+    <mat-card class="user-card clickable" *ngFor="let u of nearbyUsers" (click)="seeUserDetails(u.username)">
+      <mat-card-content>{{u.name}}</mat-card-content>
+    </mat-card>
+  </div>
 </div>
