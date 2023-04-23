@@ -8,7 +8,7 @@ export class SocketWebServiceService extends Socket {
 
   constructor() {
     super({
-      'url': 'http://localhost:5000'
+      'url': 'https://geolocation-app-server.onrender.com'
     })
     console.log('Socket instanciated')
   }

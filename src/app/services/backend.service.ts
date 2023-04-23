@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class BackendService {
 
-  private baseUrl = 'http://127.0.0.1:5000'
+  private baseUrl = 'https://geolocation-app-server.onrender.com'
 
   constructor() { }
 
