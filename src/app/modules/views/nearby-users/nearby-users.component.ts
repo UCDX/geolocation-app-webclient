@@ -26,11 +26,10 @@ export class NearbyUsersComponent implements OnInit {
     // this.websocket.onNearbyUsers(this.catchUsersHandler)
     this.websocket.onNearbyUsers( (data: any) => {
       console.log('catch users hanlder')
+      sessionStorage.setItem('nearby-users', JSON.stringify(data))
       this.nearbyUsers = data
       console.log(this.nearbyUsers)
       console.log(this.nearbyUsers.length)
-      console.log(this.nearbyUsers[0].name)
-      sessionStorage.setItem('nearby-users', JSON.stringify(data))
     } )
 
     let usersList = sessionStorage.getItem('nearby-users')
