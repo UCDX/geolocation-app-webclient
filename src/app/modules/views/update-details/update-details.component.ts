@@ -39,7 +39,7 @@ export class UpdateDetailsComponent {
     this.interests = user.interests
   }
 
-  updateDetails(name: string, age: string, birthdate: string, interests: string) {
+  async updateDetails(name: string, age: string, birthdate: string, interests: string) {
     console.log(name, age, birthdate, interests)
 
     if (name == '' || age == '' || birthdate == '' || interests == '') {
@@ -56,7 +56,7 @@ export class UpdateDetailsComponent {
       'interests': interests
     }
     console.log(data)
-    const response = this.backend.updateUserInfo(parseInt(userId), data)
+    const response = await this.backend.updateUserInfo(parseInt(userId), data)
     console.log(`response: ${response}`)
   }
 

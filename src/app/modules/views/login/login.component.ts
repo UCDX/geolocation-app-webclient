@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     const response = await this.backend.login(data)
     console.log(`response: ${response}`)
     localStorage.setItem('user_id', response.data.id)
+    localStorage.setItem('username', response.data.username)
 
     this.goToPage('/nearby-users')
   }

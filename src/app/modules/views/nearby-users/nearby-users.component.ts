@@ -15,7 +15,10 @@ export class NearbyUsersComponent implements OnInit {
   constructor(
     private websocket: SocketWebServiceService,
     private router: Router
-  ) { }
+  ) {
+    this.startGeoloc()
+    console.log('geo loc start')
+  }
 
   ngOnInit(): void {
     // this.websocket.emitLocation({ user_id: 444, lat: 21, lon: -85 })
@@ -23,7 +26,7 @@ export class NearbyUsersComponent implements OnInit {
       this.goToPage('/login')
       return
     }
-    this.startGeoloc()
+    // this.startGeoloc()
     // this.websocket.onNearbyUsers(this.catchUsersHandler)
     this.websocket.onNearbyUsers( (data: any) => {
       console.log('catch users hanlder')

@@ -11,3 +11,29 @@
   <p>Intereses: {{userData.interests}}</p>
 </div>
 
+<!--Form to comment-->
+<div class="global-container">
+  <mat-form-field class="form-field">
+    <mat-label>Escribe un comentario sobre este usuario.</mat-label>
+    <textarea #commentInput matInput></textarea>
+  </mat-form-field>
+  <!--Controls-->
+  <div style="text-align: right;">
+    <button mat-raised-button color="primary" (click)="sendComment(commentInput.value)">Comentar</button>
+  </div>
+</div>
+
+<!--Comments container-->
+<div class="global-container">
+  <mat-card class="example-card" *ngFor="let comment of userData.comments">
+    <mat-card-header>
+      <mat-card-title>{{comment.from}}</mat-card-title>
+      <mat-card-subtitle>Calificación: {{comment.rate}}/5</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{comment.comment}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

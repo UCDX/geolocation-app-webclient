@@ -29,6 +29,7 @@ export class SignupComponent implements OnInit {
     const response = await this.backend.signup(data)
     console.log(`response: ${response}`)
     localStorage.setItem('user_id', response.data.id)
+    localStorage.setItem('username', response.data.username)
 
     this.goToPage('/nearby-users')
   }

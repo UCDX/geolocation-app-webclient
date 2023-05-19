@@ -77,7 +77,7 @@ export class BackendService {
 
   getUserInfo(userId: number) {
     const endpoint = `${this.baseUrl}/user/${userId}`
-
+    console.log('Executing request to get user details.')
     return fetch(endpoint, {
       method: 'GET',
       headers: {
@@ -113,6 +113,35 @@ export class BackendService {
       if (response.ok) {
         alert('Actualización exitosa')
         return response.json()
+      } else {
+        throw new Error('Error en la respuesta de la API')
+      }
+    })
+    .then(jsonData => {
+      return jsonData
+    })
+    .catch(error => {
+      throw new Error(error)
+    })
+  }
+
+  postComment(data: any) {
+    const endpoint = `${this.baseUrl}/comment`
+
+    return fetch(endpoint, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      } else if (response.status == 400) {
+        console.log(response)
+        alert('Ocurrió un error al publicar el comentario.')
+        throw new Error('Ocurrió un error al publicar el comentario.')
       } else {
         throw new Error('Error en la respuesta de la API')
       }
